@@ -4,7 +4,7 @@
 </div>
 
 <h3 align="center">
-  Curso ministrado por NodeBR com Erick Wendel
+  Curso ministrado por NodeBR com Erick Wendel 
 </h3>
 
 <p align="center">

@@ -17,7 +17,7 @@
 
 ## :pushpin: Info
 
-Entendo os conceitos por trás do ciclo de execução do Node.js e sincronização de funções com uso de callbacks, Promises e Async/Await.
+Entendendo os conceitos por trás do ciclo de execução do Node.js e sincronização de funções com uso de callbacks, Promises e Async/Await.
 
 ## :open_file_folder: Conteúdos
 
