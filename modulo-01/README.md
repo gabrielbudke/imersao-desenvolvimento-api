@@ -1,10 +1,10 @@
 <div align="center">   
    <img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/233_Node_Js_logo-256.png" width="180px">   
-   <h1>Imersão em Desenvolvinento de API com Node.js</h1>
+   <h1>Módulo 1</h1>
 </div>
 
 <h3 align="center">
-  Curso ministrado por NodeBR com Erick Wendel
+  Sincronia de Funções
 </h3>
 
 <p align="center">
@@ -15,21 +15,13 @@
   <img alt="language count" src="https://img.shields.io/github/languages/count/gabrielbudke/imersao-desenvolvimento-api?color=539E43&style=flat-square">
 </p>
 
-<p align="center">
-   <a href="#pushpin-info">Info</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-   <a href="#open_file_folder-conteudos">Módulos</a>  
-</p>
-
 ## :pushpin: Info
 
-Esse repositório é destinado ao curso Imersão em Desenvolvimento de API ministrado pela NodeBR e Erick Wendel.
+Entendo os conceitos por trás do ciclo de execução do Node.js e sincronização de funções com uso de callbacks, Promises e Async/Await.
 
-## :open_file_folder: Módulos
+## :open_file_folder: Conteúdos
 
-- [1° Módulo](./modulo-01/)
-
-
-
+- [Callbacks](./callbacks/)
 
 ---
 Made by Gabriel Sousa
