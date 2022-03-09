@@ -22,6 +22,7 @@ Entendendo os conceitos por trás do ciclo de execução do Node.js e sincroniza
 ## :open_file_folder: Conteúdos
 
 - [Callbacks](./callbacks/)
+- [Promise](./promises/)
 
 ---
 Made by Gabriel Sousa
