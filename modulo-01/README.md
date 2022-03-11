@@ -23,6 +23,7 @@ Entendendo os conceitos por trás do ciclo de execução do Node.js e sincroniza
 
 - [Callbacks](./callbacks/)
 - [Promise](./promises/)
+- [Async/Await](./async-await/)
 
 ---
 Made by Gabriel Sousa
