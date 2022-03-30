@@ -1,0 +1,3 @@
+tasks:
+  - name: npm-update
+    init: npm install npm@latest -g 
