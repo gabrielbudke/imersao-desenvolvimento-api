@@ -27,6 +27,7 @@ Esse repositório é destinado ao curso Imersão em Desenvolvimento de API minis
 ## :open_file_folder: Módulos
 
 - [1° Módulo - Sincronia de Funções](./modulo-01/)
+- [2° Módulo - Manipulação de Listas](./modulo-02/)
 
 
 

@@ -10,7 +10,7 @@ myEmitter.on(eventName, function (click) {
 
 let count = 0;
 setInterval(() => {
-   myEmitter.emit(eventName, `clicou no ok ${count++}`);
+   myEmitter.emit(eventName, `no ok ${count++}`);
 }, 1000);
 
 const stdin = process.openStdin();

@@ -1,10 +1,10 @@
 <div align="center">   
    <img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/233_Node_Js_logo-256.png" width="180px">   
-   <h1>Módulo 1</h1>
+   <h1>Módulo 2</h1>
 </div>
 
 <h3 align="center">
-  Sincronia de Funções
+  Manipulação de Listas
 </h3>
 
 <p align="center">
@@ -17,14 +17,16 @@
 
 ## :pushpin: Info
 
-Entendendo os conceitos por trás do ciclo de execução do Node.js e sincronização de funções com uso de callbacks, Promises e Async/Await.
+Estudo e entendimento das maneiras de manipular listas no Javascript.
 
 ## :open_file_folder: Conteúdos
 
-- [Callbacks](./callbacks/)
-- [Promise](./promises/)
-- [Async/Await](./async-await/)
-- [Events](./events/)
+- for-forIn-forOf
+- map
+- filter
+
+## :rocket: Tecnologia
+- [axios](https://axios-http.com/)
 
 ---
 Made by Gabriel Sousa
