@@ -24,6 +24,7 @@ Estudo e entendimento das maneiras de manipular listas no Javascript.
 - for-forIn-forOf
 - map
 - filter
+- reduce
 
 ## :rocket: Tecnologia
 - [axios](https://axios-http.com/)
