@@ -28,6 +28,8 @@ Esse repositório é destinado ao curso Imersão em Desenvolvimento de API minis
 
 - [1° Módulo - Sincronia de Funções](./modulo-01/)
 - [2° Módulo - Manipulação de Listas](./modulo-02/)
+- [3° Módulo - Introdução a desenvolvimento de testes automatizados](./modulo-03/)
+- [4° Módulo - Além da Web. Criando ferramentas de linha de comando](./modulo-03/)
 
 
 
