@@ -1,3 +1,5 @@
 tasks:
   - name: npm-update
     init: npm install npm@latest -g 
+  - name: mocha
+    init: npm install -g mocha
