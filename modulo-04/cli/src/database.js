@@ -22,20 +22,25 @@ class Database {
 
     async read(heroId) {
         const heroes = await this.getAllDataFromFile();
-        const heroesFilteredByID = heroes.filter(hero => hero.id === heroId);
+        const heroesFilteredByID = heroes.filter(hero => heroId ? (hero.id === heroId) : true);
         return heroesFilteredByID;
     }
 
-    async create(hero) {
+    async create({ id, name, power }) {
         const data = await this.getAllDataFromFile();
-        const id = hero.id < 2 ? hero.id : Date.now();
-        const heroWithId = { id, ...hero };
-        data.push(heroWithId);
+
+        const hero = {
+            id: id ? id : Date.now(),
+            name,
+            power
+        };
+
+        data.push(hero);
         await this.writeFile(data);
-        return heroWithId;
+        return hero;
     }
 
-    async remove(heroId) {
+    async delete(heroId) {
         if (!heroId) {
             return await this.writeFile([]);
         }
@@ -71,7 +76,6 @@ class Database {
             ...data,
             heroUpdated
         ]);
-
 
         //return false;
     }

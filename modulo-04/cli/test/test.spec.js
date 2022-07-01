@@ -31,9 +31,9 @@ describe("Suite de teste da aplicação CLI", () => {
         deepEqual(actual, expected);
     });
 
-    it("Deve remover um herói do arquivo", async () => {
+    it("Deve deletar um herói do arquivo", async () => {
         const expected = true;
-        const actual = await database.remove(DEFAULT_HERO.id);
+        const actual = await database.delete(DEFAULT_HERO.id);
         deepEqual(actual, expected);
     });
 
