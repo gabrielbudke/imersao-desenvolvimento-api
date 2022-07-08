@@ -77,7 +77,7 @@ class Database {
             heroUpdated
         ]);
 
-        //return false;
+        return true;
     }
 }
 
