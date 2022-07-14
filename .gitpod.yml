@@ -1,5 +1,46 @@
 tasks:
   - name: npm-update
-    init: npm install npm@latest -g 
+    init: npm install npm@latest -g
   - name: mocha
     init: npm install -g mocha
+  - name: docker-postgres
+    init: >
+      docker run
+      --name postgres 
+      -e POSTGRES_USER=admin
+      -e POSTGRES_PASSWORD=admin
+      -e POSTGRES_DB=heroes
+      -p 5432:5432
+      -d
+      postgres &&
+      gp sync-done postgres
+    command: docker start postgres
+  - name: docker-adminer
+    init: >
+      gp sync-await postgres &&
+      docker run 
+      --name adminer 
+      -p 8080:8080
+      --link postgres:postgres
+      -d 
+      adminer
+  - name: docker-mongodb
+    init: >
+      docker run 
+      --name mongodb 
+      -p 27017:27017
+      -e MONGO_INITDB_ROOT_USERNAME=admin 
+      -e MONGO_INITDB_ROOT_PASSWORD=admin
+      -d 
+      mongodb:4 &&
+      gp sync-done mongodb
+    command: docker start mongodb
+  - name: docker-mongoclient
+    init: >
+      gp sync-await mongodb &&
+      docker run 
+      --name mongoclient
+      -p 3000:3000
+      --link mongodb:mongodb
+      -d 
+      mongoclient/mongoclient
