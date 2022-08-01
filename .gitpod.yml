@@ -32,7 +32,7 @@ tasks:
       -e MONGO_INITDB_ROOT_USERNAME=admin 
       -e MONGO_INITDB_ROOT_PASSWORD=admin
       -d 
-      mongodb:4 &&
+      mongo:4 &&
       gp sync-done mongodb
     command: docker start mongodb
   - name: docker-mongoclient

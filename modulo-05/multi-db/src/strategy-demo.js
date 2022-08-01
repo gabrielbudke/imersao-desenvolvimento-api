@@ -6,17 +6,29 @@ class NotImplementedException extends Error {
 }
 
 /**
- * A classe ou interface Strategy, declara as operações comuns a todas as versões.
+ * A classe ou interface Strategy, declara as operações comuns a todas as estratégias.
  * No nosso caso, a todos os databases
  */
 class ICRUD {
     create(hero) {
         throw new NotImplementedException();
     }
+
+    read(query) {
+        throw new NotImplementedException();
+    }
+
+    update(id, hero) {
+        throw new NotImplementedException();
+    }
+
+    delete(id) {
+        throw new NotImplementedException();
+    }
 }
 
 /**
- * A Strategy concreta deverá implementar o algoritmo estabelecido na interface/classe.
+ * A Strategy concreta deverá implementar o algoritmo estabelecido na interface/classe porém obedecendo as regras da estratégia.
  */
 class Postgres extends ICRUD {
     constructor() {
@@ -52,6 +64,18 @@ class Context {
 
     create(hero) {
         this._databaseStrategy.create(hero);
+    }
+
+    read(hero) {
+        this._databaseStrategy.read(hero);
+    }
+
+    update(id, hero) {
+        this._databaseStrategy.update(id, hero);
+    }
+
+    delete(id) {
+        this._databaseStrategy.update(id);
     }
 }
 
