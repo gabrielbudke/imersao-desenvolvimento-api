@@ -10,6 +10,10 @@ class ContextDatabase {
     create(hero) {
         return this._databaseStrategy.create(hero);
     }
+
+    isConnected() {
+        return this._databaseStrategy.isConnected();
+    }
 }
 
 module.exports = ContextDatabase;

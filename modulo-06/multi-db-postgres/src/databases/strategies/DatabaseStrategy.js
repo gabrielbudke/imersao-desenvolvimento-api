@@ -4,12 +4,6 @@ class NotImplementedException extends Error {
     }
 }
 
-class ConnectionException extends Error {
-    constructor() {
-        super("Could not connect at database");
-    }
-}
-
 class DatabaseStrategy {
     create() {
         throw new NotImplementedException();
@@ -28,7 +22,7 @@ class DatabaseStrategy {
     }
 
     isConnected() {
-        throw new ConnectionException();
+        throw new NotImplementedException();
     }
 }
 
