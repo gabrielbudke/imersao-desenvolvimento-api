@@ -1,4 +1,5 @@
 const { Sequelize, DataTypes } = require("sequelize");
+
 const sequelize = new Sequelize("heroes", "admin", "admin", {
     host: "localhost",
     dialect: "postgres",
@@ -6,7 +7,7 @@ const sequelize = new Sequelize("heroes", "admin", "admin", {
 });
 
 async function main() {
-    const Heroes = sequelize.define("heroes", {
+    const Heroes = sequelize.define("Heroes", {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -22,7 +23,7 @@ async function main() {
             allowNull: false
         }
     }, {
-        tableName: "heroes",
+        tableName: "tb_heroes",
         freezeTableName: false,
         timestamps: false
     });
@@ -40,6 +41,37 @@ async function main() {
      */
     const heroes = await Heroes.findAll({ raw: true });
     console.log("[heroes]", heroes);
+
+    /**
+     * Criando um model para os Vilões
+     */
+    const Villains = sequelize.define("Villains", {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+            allowNull: false
+        },
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        power: {
+            type: DataTypes.STRING,
+            allowNull: false
+        }
+    }, {
+        tableName: "tb_villains",
+        freezeTableName: false,
+        timestamps: false
+    });
+
+    await Villains.sync();
+    await Villains.create({ name: "Coringa", power: "Insanidade" });
+    const villains = await Villains.findAll();
+    console.log("All villains:", villains);
+
+
 
 }
 
