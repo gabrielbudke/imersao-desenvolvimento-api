@@ -48,8 +48,11 @@ async function main() {
     /**
      * Realizando uma consulta utilizando o model criado: SELECT * FROM heroes;
      */
-    
-    const heroes = await Heroes.findAll({ raw: true });
+    await Heroes.create({ name: "Lanterna Verde", power: "Anel" });
+    const heroes = await Heroes.findAll({
+        raw: true,
+        attributes: ["name"]
+    });
     console.log("[heroes]", heroes);
 
 

@@ -4,8 +4,9 @@
   "description": "<div align=\"center\">       <img src=\"https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/233_Node_Js_logo-256.png\" width=\"180px\">       <h1>Módulo 5</h1> </div>",
   "main": "index.js",
   "scripts": {
+    "start": "node src/index.js",
     "demo": "node src/postgres-demo.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha src/tests"
   },
   "keywords": [],
   "author": "",
@@ -14,5 +15,8 @@
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.21.3"
+  },
+  "devDependencies": {
+    "mocha": "^10.0.0"
   }
 }
