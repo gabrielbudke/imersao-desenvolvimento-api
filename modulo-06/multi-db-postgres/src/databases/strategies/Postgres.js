@@ -1,32 +1,31 @@
 const DatabaseStrategy = require("./DatabaseStrategy");
-const { Sequelize } = require("sequelize");
+const { Sequelize, DataTypes } = require("sequelize");
 
 class Postgres extends DatabaseStrategy {
     constructor() {
         super();
         this._connection = null;
         this._heroes = null;
-        this._connect();
     }
 
     async isConnected() {
         try {
             await this._connection.authenticate();
-            return true;
             console.log("[postgres-connection]: Connection has been established successfully.");
+            return true;
         } catch (error) {
             console.error("[postgres-connection]: Unable to connect to the database:", error.message);
             return false;
         }
-
-        await this._connection.close();
     }
 
-    create(hero) {
+    async create(hero) {
+        const { dataValues } = await this._heroes.create(hero);
         console.log("[postgres-create]: Hero created in Postgres database");
+        return dataValues;
     }
 
-    defineModel() {
+    async defineModel() {
         this._heroes = this._connection.define("Heroes", {
             id: {
                 type: DataTypes.INTEGER,
@@ -48,10 +47,10 @@ class Postgres extends DatabaseStrategy {
             timestamps: false
         });
 
-        // await Heroes.sync();
+        await this._heroes.sync();
     }
 
-    _connect() {
+    async connect() {
         this._connection = new Sequelize({
             dialect: "postgres",
             host: "localhost",
@@ -60,6 +59,8 @@ class Postgres extends DatabaseStrategy {
             password: "admin",
             logging: false
         });
+
+        await this.defineModel();
     }
 }
 

@@ -14,6 +14,10 @@ class ContextDatabase {
     isConnected() {
         return this._databaseStrategy.isConnected();
     }
+
+    connect() {
+        return this._databaseStrategy.connect();
+    }
 }
 
 module.exports = ContextDatabase;
