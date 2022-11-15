@@ -22,17 +22,17 @@ class Postgres extends DatabaseStrategy {
         return dataValues;
     }
 
-    async read(params = {}) {
+    async read(query = {}) {
         // const heroes = await this._heroes.findAll({
         //     raw: true,
         //     where: params
         // });
-        const hero = await this._heroes.findOne({
+        const heroes = await this._heroes.findAll({
             raw: true,
-            where: params
+            where: query
         });
 
-        return hero;
+        return heroes;
     }
 
     update(id, hero) {
@@ -43,9 +43,10 @@ class Postgres extends DatabaseStrategy {
         });
     }
 
-    async deleteAll() {
-        await this._heroes.destroy({
-            truncate: true
+    delete(id) {
+        const query = id ? { id } : {};
+        return this._heroes.destroy({
+            where: query
         });
     }
 
@@ -81,7 +82,7 @@ class Postgres extends DatabaseStrategy {
             database: "heroes",
             username: "admin",
             password: "admin",
-            logging: true,
+            logging: false,
         });
 
         await this.defineModel();

@@ -19,6 +19,10 @@ class ContextDatabase {
         return this._databaseStrategy.update(id, hero);
     }
 
+    delete(id) {
+        return this._databaseStrategy.delete(id);
+    }
+
     deleteAll() {
         return this._databaseStrategy.deleteAll();
     }
@@ -30,6 +34,7 @@ class ContextDatabase {
     connect() {
         return this._databaseStrategy.connect();
     }
+    
 }
 
 module.exports = ContextDatabase;
