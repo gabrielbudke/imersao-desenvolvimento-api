@@ -11,18 +11,42 @@ class Postgres extends DatabaseStrategy {
     async isConnected() {
         try {
             await this._connection.authenticate();
-            console.log("[postgres-connection]: Connection has been established successfully.");
             return true;
         } catch (error) {
-            console.error("[postgres-connection]: Unable to connect to the database:", error.message);
             return false;
         }
     }
 
     async create(hero) {
         const { dataValues } = await this._heroes.create(hero);
-        console.log("[postgres-create]: Hero created in Postgres database");
         return dataValues;
+    }
+
+    async read(params = {}) {
+        // const heroes = await this._heroes.findAll({
+        //     raw: true,
+        //     where: params
+        // });
+        const hero = await this._heroes.findOne({
+            raw: true,
+            where: params
+        });
+
+        return hero;
+    }
+
+    update(id, hero) {
+        return this._heroes.update(hero, {
+            where: {
+                id
+            }
+        });
+    }
+
+    async deleteAll() {
+        await this._heroes.destroy({
+            truncate: true
+        });
     }
 
     async defineModel() {
@@ -57,7 +81,7 @@ class Postgres extends DatabaseStrategy {
             database: "heroes",
             username: "admin",
             password: "admin",
-            logging: false
+            logging: true,
         });
 
         await this.defineModel();

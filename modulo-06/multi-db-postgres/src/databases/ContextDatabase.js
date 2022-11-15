@@ -11,6 +11,18 @@ class ContextDatabase {
         return this._databaseStrategy.create(hero);
     }
 
+    read(params) {
+        return this._databaseStrategy.read(params);
+    }
+
+    update(id, hero) {
+        return this._databaseStrategy.update(id, hero);
+    }
+
+    deleteAll() {
+        return this._databaseStrategy.deleteAll();
+    }
+
     isConnected() {
         return this._databaseStrategy.isConnected();
     }
