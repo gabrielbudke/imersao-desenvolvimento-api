@@ -25,7 +25,7 @@ Criação de uma CLI
 
 ## :fire: Execução
 1. Acessar a pasta /cli através do terminal
-2. Executar o comando ```npm init```
+2. Executar o comando ```npm install```
 3. Rodar o comando ```node src/index.js --help``` para visualizar os parâmetros válidos.
 
 ## :rocket: Tecnologia

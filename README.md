@@ -30,6 +30,8 @@ Esse repositório é destinado ao curso Imersão em Desenvolvimento de API minis
 - [2° Módulo - Manipulação de Listas](./modulo-02/)
 - [3° Módulo - Introdução a desenvolvimento de testes automatizados](./modulo-03/)
 - [4° Módulo - Além da Web. Criando ferramentas de linha de comando](./modulo-04/)
+- [5° Módulo - Projeto Multi-Banco de Dados](./modulo-05/)
+- [6° Módulo - Multi-Banco de Dados - Postgres](./modulo-06/)
 
 
 

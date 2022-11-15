@@ -20,12 +20,17 @@
 Criando um ambiente docker para a criação de um projeto multi-database e conhecendo o design pattern strategy.
 
 ## :open_file_folder: Conteúdos
-
 Docker
 Design Pattern Strategy
 
+## :fire: Execução
+1. Acessar a pasta /multi-db através do terminal
+2. Executar o comando ```npm install```
+3. Rodar o comando ```npm run dev```.
+
 ## :rocket: Tecnologia
-- [docker]()
+- [docker](https://www.docker.com/)
+- [design pattern - strategy](https://refactoring.guru/pt-br/design-patterns/strategy)
 
 ---
 Made by Gabriel Sousa
