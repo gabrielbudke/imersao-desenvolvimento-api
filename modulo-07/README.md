@@ -4,7 +4,7 @@
 </div>
 
 <h3 align="center">
-  Projeto multi-banco de dados - Postgres
+  Projeto multi-banco de dados - MongoDB
 </h3>
 
 <p align="center">
@@ -16,15 +16,14 @@
 </p>
 
 ## :pushpin: Info
-Projeto utilizando o banco de dados relacional Postgres e o padrão Strategy.
+Projeto utilizando o banco de dados NoSQL MongoDB e o padrão Strategy.
 
 ## :open_file_folder: Conteúdos
 
 ## :rocket: Tecnologia
-- [docker](https://hub.docker.com/_/postgres)
-- [postgres](https://www.postgresql.org/)
-- [sequelize](https://sequelize.org/)
-- [mocha](https://mochajs.org/)
+- [docker](https://hub.docker.com/_/mongo)
+- [mongodb](https://www.mongodb.com/home)
+- [mongoose]()
 
 ---
 Made by Gabriel Sousa

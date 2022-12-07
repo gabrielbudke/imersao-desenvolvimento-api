@@ -13,7 +13,7 @@ class DatabaseStrategy {
         throw new NotImplementedException();
     }
 
-    upsdate() {
+    update() {
         throw new NotImplementedException();
     }
 
