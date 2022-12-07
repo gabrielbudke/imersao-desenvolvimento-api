@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha src/tests",
     "demo": "node src/mongo-demo.js"
   },
   "keywords": [],
@@ -13,5 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "mongoose": "^6.8.0"
+  },
+  "devDependencies": {
+    "mocha": "^10.1.0"
   }
 }

@@ -8,6 +8,14 @@ class DatabaseStrategy {
     create() {
         throw new NotImplementedException();
     }
+
+    connect() {
+        throw new NotImplementedException();
+    }
+
+    isConnected() {
+        throw new NotImplementedException();
+    }
 }
 
 module.exports = DatabaseStrategy;

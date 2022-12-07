@@ -1,7 +1,6 @@
 const assert = require("assert");
 const Postgres = require("../databases/strategies/Postgres");
 const ContextDatabase = require("../databases/ContextDatabase");
-const { X509Certificate } = require("crypto");
 
 const database = new ContextDatabase(new Postgres());
 const MOCK_CREATE_HERO = {

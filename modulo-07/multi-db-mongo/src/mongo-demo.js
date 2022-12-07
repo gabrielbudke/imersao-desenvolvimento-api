@@ -1,13 +1,12 @@
 const mongoose = require("mongoose");
-mongoose.onc
 
 const main = async () => {
 
     try {
-        await mongoose.connect("mongodb://gabriel.sousa:admin@localhost:27017/heroes");
+        mongoose.connect("mongodb://gabriel.sousa:admin@localhost:27017/heroes");
         console.log("[INFO]: Connected to database with success!");
     } catch (error) {
-        console.error("[ERROR]:", error);
+        console.error("[ERROR]:", error.message);
     }
 
     const hero = mongoose.Schema({
@@ -25,11 +24,18 @@ const main = async () => {
         }
     });
 
-    const Hero = mongoose.model("Hero", hero);
+    // Cria o model do herói
+    const Hero = mongoose.model("Hero", hero);   
+
+    // Executa o comando Insert
     await Hero.create({ name: "Arqueiro Verde", power: "Flechas" });
-    // await Hero.deleteOne();
+
+    // Executa o Select
     const heroes = await Hero.find();
     console.log("[INFO]:", heroes);
+
+    // Executa o comando Delete
+    await Hero.deleteMany();
 
     mongoose.disconnect();
     console.log("[INFO]: Database disconnected!");
