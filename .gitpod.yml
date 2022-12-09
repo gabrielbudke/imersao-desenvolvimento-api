@@ -1,8 +1,4 @@
 tasks:
-  - name: npm-update
-    init: npm install npm@latest -g
-  - name: mocha
-    init: npm install -g mocha
   - name: docker-postgres
     init: >
       docker run
@@ -43,4 +39,5 @@ tasks:
       -p 3000:3000
       --link mongodb:mongodb
       -d 
-      mongoclient/mongoclient
+      mongoclient/mongoclient && 
+      docker exec -it mongodb mongo --host localhost -u admin -p admin --authenticationDatabase admin
