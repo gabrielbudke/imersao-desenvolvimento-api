@@ -16,16 +16,20 @@ class MongoDb extends DatabaseStrategy {
     }
 
     isConnected() {
-
         return STATUS[this._connection.readyState];
-        return true;
     }
     
-    create() {
-        console.log("[INFO]: Created with MongoDB");
+    create(hero) {
+       return this._hero.create(hero);
     }
 
-    read() {}
+    read(query) {
+        return this._hero.findOne().where(query);
+    }
+
+    removeAll() {
+        return this._hero.deleteMany();
+    }
 
     defineModel() {
         const schema = mongoose.Schema({
@@ -50,11 +54,12 @@ class MongoDb extends DatabaseStrategy {
         try {
             mongoose.set('strictQuery', true);
             await mongoose.connect("mongodb://gabriel.sousa:admin@localhost:27017/heroes");
-            console.log("[INFO][DATABASE]: Connected do database with success!");
             this._connection = mongoose.connection;
+            this.defineModel();
         } catch (error) {
             console.error("[ERROR][DATABASE]: Fail to connect to database with message:", error.message);    
         }
+
     }
 
 }

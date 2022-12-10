@@ -3,8 +3,16 @@ class ContextDatabase {
         this._databaseStrategy = databaseStrategy;
     }
 
-    create() {
-        return this._databaseStrategy.create();
+    create(hero) {
+        return this._databaseStrategy.create(hero);
+    }
+
+    read(query) {
+        return this._databaseStrategy.read(query);
+    }
+
+    removeAll() {
+        return this._databaseStrategy.removeAll();
     }
 
     connect() {

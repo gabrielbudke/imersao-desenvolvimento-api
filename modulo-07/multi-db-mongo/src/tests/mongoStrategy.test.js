@@ -4,13 +4,51 @@ const ContextDatabase = require("../databases/ContextDatabase");
 
 const database = new ContextDatabase(new MongoDb());
 
-describe("Tests of Postgres Strategy", () => {
+const MOCK_HEROES_CREATE = [
+    {
+        name: "Arqueiro Verde",
+        power: "Flechas"
+    },
+    {
+        name: "Mulher Maravilha",
+        power: "Laço"
+    }
+];
+
+const MOCK_HERO_CREATE = {
+    name: "Mulher Maravilha",
+    power: "Laço"
+};
+
+describe("Tests of MongoDB Strategy", () => {
     before(async () => {
         await database.connect();
+    });
+
+    after(async () => {
+        await database.removeAll();
     });
 
     it("Verify connection with database", async () => {
         const databaseConnectionStatus = await database.isConnected();
         assert.deepEqual("Connected", databaseConnectionStatus);
+    });
+
+    it("Create a hero", async () => {
+        // const { name, power } = await database.create(MOCK_HEROES_CREATE);
+        let heroes = await database.create(MOCK_HEROES_CREATE);
+        heroes = heroes.map(hero => {
+            return {
+                name: hero.name,
+                power: hero.power
+            }
+        });
+
+        assert.deepEqual(heroes, MOCK_HEROES_CREATE);
+    });
+
+    it("Read a hero", async () => {
+        const { name, power }= await database.read({ name: MOCK_HERO_CREATE.name });
+        assert.deepEqual({ name, power }, MOCK_HERO_CREATE);
     });
 });
