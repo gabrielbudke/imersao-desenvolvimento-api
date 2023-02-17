@@ -11,6 +11,10 @@ class ContextDatabase {
         return this._databaseStrategy.read(query);
     }
 
+    update() {
+        return this._databaseStrategy.update();
+    }
+
     removeAll() {
         return this._databaseStrategy.removeAll();
     }

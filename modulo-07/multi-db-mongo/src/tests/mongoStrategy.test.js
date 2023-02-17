@@ -25,9 +25,9 @@ describe("Tests of MongoDB Strategy", () => {
         await database.connect();
     });
 
-    after(async () => {
-        await database.removeAll();
-    });
+    // after(async () => {
+    //     await database.removeAll();
+    // });
 
     it("Verify connection with database", async () => {
         const databaseConnectionStatus = await database.isConnected();
@@ -35,8 +35,8 @@ describe("Tests of MongoDB Strategy", () => {
     });
 
     it("Create a hero", async () => {
-        // const { name, power } = await database.create(MOCK_HEROES_CREATE);
         let heroes = await database.create(MOCK_HEROES_CREATE);
+        console.log(heroes);
         heroes = heroes.map(hero => {
             return {
                 name: hero.name,
@@ -48,7 +48,14 @@ describe("Tests of MongoDB Strategy", () => {
     });
 
     it("Read a hero", async () => {
-        const { name, power }= await database.read({ name: MOCK_HERO_CREATE.name });
+        // const { name, power } = await database.read({ name: MOCK_HERO_CREATE.name });
+        const [{ name, power }] = await database.read({ name: MOCK_HERO_CREATE.name });
+        console.log({ name, power });
+        // console.log("[heroes]", heroes);
         assert.deepEqual({ name, power }, MOCK_HERO_CREATE);
+    });
+
+    xit("Update a hero", () => {
+        database.update();
     });
 });

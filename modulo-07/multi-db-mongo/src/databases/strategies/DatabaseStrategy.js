@@ -9,6 +9,14 @@ class DatabaseStrategy {
         throw new NotImplementedException();
     }
 
+    read() {
+        throw new NotImplementedException();
+    }
+
+    update() {
+        throw new NotImplementedException();
+    }
+
     connect() {
         throw new NotImplementedException();
     }

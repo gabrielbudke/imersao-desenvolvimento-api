@@ -24,7 +24,12 @@ class MongoDb extends DatabaseStrategy {
     }
 
     read(query) {
-        return this._hero.findOne().where(query);
+        // return this._hero.findOne().where(query);
+        return this._hero.find(query).limit(2);
+    }
+
+    update() {
+        return "Update";
     }
 
     removeAll() {
@@ -45,7 +50,7 @@ class MongoDb extends DatabaseStrategy {
                 type: Date,
                 default: new Date()
             }
-        });
+        }, { collection: "heroes" });
 
         this._hero = mongoose.model("Hero", schema);
     }
