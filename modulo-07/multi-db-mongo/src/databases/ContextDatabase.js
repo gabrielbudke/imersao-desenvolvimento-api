@@ -11,16 +11,24 @@ class ContextDatabase {
         return this._databaseStrategy.read(query);
     }
 
-    update() {
-        return this._databaseStrategy.update();
+    update(id, hero) {
+        return this._databaseStrategy.update(id, hero);
     }
 
-    removeAll() {
-        return this._databaseStrategy.removeAll();
+    delete(id) {
+        return this._databaseStrategy.delete(id);
+    }
+
+    deleteAll() {
+        return this._databaseStrategy.deleteAll();
     }
 
     connect() {
         return this._databaseStrategy.connect();
+    }
+
+    disconnect() {
+        return this._databaseStrategy.disconnect();
     }
 
     isConnected() {

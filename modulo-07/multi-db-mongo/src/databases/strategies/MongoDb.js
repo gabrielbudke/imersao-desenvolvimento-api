@@ -25,14 +25,20 @@ class MongoDb extends DatabaseStrategy {
 
     read(query) {
         // return this._hero.findOne().where(query);
-        return this._hero.find(query).limit(2);
+        // return this._hero.find(query).limit(2).skip(4);
+        return this._hero.find(query).limit(10);
     }
 
-    update() {
-        return "Update";
+    update(id, hero) {
+        console.log("[id]", id);
+        return this._hero.updateOne({ _id: id }, hero);
     }
 
-    removeAll() {
+    delete(id) {
+        return this._hero.deleteOne({ _id: id });
+    }
+
+    deleteAll() {
         return this._hero.deleteMany();
     }
 
@@ -48,7 +54,7 @@ class MongoDb extends DatabaseStrategy {
             },
             insertedAt: {
                 type: Date,
-                default: new Date()
+                default: Date.now()
             }
         }, { collection: "heroes" });
 
@@ -64,7 +70,10 @@ class MongoDb extends DatabaseStrategy {
         } catch (error) {
             console.error("[ERROR][DATABASE]: Fail to connect to database with message:", error.message);    
         }
+    }
 
+    disconnect() {
+        this._connection.close();
     }
 
 }

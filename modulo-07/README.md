@@ -16,14 +16,18 @@
 </p>
 
 ## :pushpin: Info
-Projeto utilizando o banco de dados NoSQL MongoDB e o padrão Strategy.
+Criando um CRUD utilizando o banco de dados NoSQL MongoDB sendo executado no container Docker e o padrão Strategy.
 
-## :open_file_folder: Conteúdos
+## :fire: Execução
+1. Acessar a pasta /multi-db-mongo através do terminal
+2. Executar o comando ```npm install```
+3. Executar o comando ```npm test``` para visualizar o resultado dos testes.
 
 ## :rocket: Tecnologia
 - [docker](https://hub.docker.com/_/mongo)
 - [mongodb](https://www.mongodb.com/home)
-- [mongoose]()
+- [mongoose](https://mongoosejs.com/)
+- [mocha](https://mochajs.org/)
 
 ---
 Made by Gabriel Sousa

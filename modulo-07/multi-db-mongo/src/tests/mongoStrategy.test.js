@@ -20,14 +20,22 @@ const MOCK_HERO_CREATE = {
     power: "Laço"
 };
 
+const MOCK_HERO_UPDATE = {
+    name: "Homem Aranha",
+    power: "Teia"
+};
+
 describe("Tests of MongoDB Strategy", () => {
     before(async () => {
         await database.connect();
+        const hero = await database.create(MOCK_HERO_UPDATE);
+        MOCK_HERO_UPDATE.id = hero._id;
     });
 
-    // after(async () => {
-    //     await database.removeAll();
-    // });
+    after(async () => {
+        await database.deleteAll();
+        database.disconnect();
+    });
 
     it("Verify connection with database", async () => {
         const databaseConnectionStatus = await database.isConnected();
@@ -36,7 +44,6 @@ describe("Tests of MongoDB Strategy", () => {
 
     it("Create a hero", async () => {
         let heroes = await database.create(MOCK_HEROES_CREATE);
-        console.log(heroes);
         heroes = heroes.map(hero => {
             return {
                 name: hero.name,
@@ -48,14 +55,20 @@ describe("Tests of MongoDB Strategy", () => {
     });
 
     it("Read a hero", async () => {
-        // const { name, power } = await database.read({ name: MOCK_HERO_CREATE.name });
         const [{ name, power }] = await database.read({ name: MOCK_HERO_CREATE.name });
-        console.log({ name, power });
-        // console.log("[heroes]", heroes);
         assert.deepEqual({ name, power }, MOCK_HERO_CREATE);
     });
 
-    xit("Update a hero", () => {
-        database.update();
+    it("Update a hero", async () => {
+        console.log("[heroId]", MOCK_HERO_UPDATE.id);
+        const heroUpdated = await database.update(MOCK_HERO_UPDATE.id, {
+            name: "Homem-Aranha 2099"
+        });
+        assert.deepEqual(heroUpdated.modifiedCount, 1);
+    });
+
+    it("Delete a hero", async () => {
+        const heroDeleted = await database.delete(MOCK_HERO_UPDATE.id);
+        assert.deepEqual( heroDeleted.deletedCount, 1)
     });
 });

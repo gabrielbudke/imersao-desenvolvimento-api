@@ -16,9 +16,14 @@
 </p>
 
 ## :pushpin: Info
-Projeto utilizando o banco de dados relacional Postgres e o padrão Strategy.
+Criando um CRUD utilizando o banco de dados relacional Postgres sendo executado no container Docker e o padrão Strategy.
 
 ## :open_file_folder: Conteúdos
+
+## :fire: Execução
+1. Acessar a pasta /multi-db-postgres através do terminal
+2. Executar o comando ```npm install```
+3. Executar o comando ```npm test``` para visualizar o resultado dos testes.
 
 ## :rocket: Tecnologia
 - [docker](https://hub.docker.com/_/postgres)

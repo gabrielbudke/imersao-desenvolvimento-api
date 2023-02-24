@@ -17,6 +17,10 @@ class DatabaseStrategy {
         throw new NotImplementedException();
     }
 
+    delete() {
+        throw new NotImplementedException();
+    }
+
     connect() {
         throw new NotImplementedException();
     }
@@ -24,6 +28,7 @@ class DatabaseStrategy {
     isConnected() {
         throw new NotImplementedException();
     }
+    
 }
 
 module.exports = DatabaseStrategy;
