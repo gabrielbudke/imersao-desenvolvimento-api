@@ -1,0 +1,20 @@
+{
+  "name": "multi-db-mongo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "mocha src/tests",
+    "demo": "node src/mongo-demo.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^6.8.0"
+  },
+  "devDependencies": {
+    "mocha": "^10.1.0"
+  }
+}
