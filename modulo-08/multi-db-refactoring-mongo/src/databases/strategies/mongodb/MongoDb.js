@@ -24,29 +24,27 @@ class MongoDb extends DatabaseStrategy {
     }
 
     read(query) {
-        // return this._hero.findOne().where(query);
-        // return this._hero.find(query).limit(2).skip(4);
-        return this._hero.find(query).limit(10);
+        return this._schema.find(query).limit(10);
     }
 
     update(id, hero) {
-        return this._hero.updateOne({ _id: id }, hero);
+        return this._schema.updateOne({ _id: id }, hero);
     }
 
     delete(id) {
-        return this._hero.deleteOne({ _id: id });
+        return this._schema.deleteOne({ _id: id });
     }
 
     deleteAll() {
-        return this._hero.deleteMany();
+        return this._schema.deleteMany();
     }
 
-    async connect() {
+    static async connect() {
         try {
             mongoose.set('strictQuery', true);
             await mongoose.connect("mongodb://gabriel.sousa:admin@localhost:27017/heroes");
-            this._connection = mongoose.connection;
-            this.defineModel();
+            return mongoose.connection;
+            // this.defineModel();
         } catch (error) {
             console.error("[ERROR][DATABASE]: Fail to connect to database with message:", error.message);
         }

@@ -1,0 +1,22 @@
+{
+  "name": "multi-db-refactoring-postgres",
+  "version": "1.0.0",
+  "description": "Banco de Dados - Projeto Multi-banco de dados",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "demo": "node src/postgres-demo.js",
+    "test": "mocha src/tests -w"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.21.3"
+  },
+  "devDependencies": {
+    "mocha": "^10.0.0"
+  }
+}

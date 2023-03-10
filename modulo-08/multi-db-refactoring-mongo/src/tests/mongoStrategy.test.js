@@ -1,9 +1,10 @@
 const assert = require("assert");
 const MongoDb = require("../databases/strategies/mongodb/MongoDb");
+const HeroSchema = require("../databases/strategies/mongodb/schemas/heroesSchema");
 const ContextDatabase = require("../databases/ContextDatabase");
 
-const database = new ContextDatabase(new MongoDb());
-
+// const database = new ContextDatabase(new MongoDb());
+let database = {};
 const MOCK_HEROES_CREATE = [
     {
         name: "Arqueiro Verde",
@@ -27,7 +28,8 @@ const MOCK_HERO_UPDATE = {
 
 describe("Tests of MongoDB Strategy", () => {
     before(async () => {
-        await database.connect();
+        const connection = await MongoDb.connect();
+        database = new ContextDatabase(new MongoDb(connection, HeroSchema));
         const hero = await database.create(MOCK_HERO_UPDATE);
         MOCK_HERO_UPDATE.id = hero._id;
     });
@@ -48,7 +50,7 @@ describe("Tests of MongoDB Strategy", () => {
             return {
                 name: hero.name,
                 power: hero.power
-            }
+            };
         });
 
         assert.deepEqual(heroes, MOCK_HEROES_CREATE);
@@ -68,6 +70,6 @@ describe("Tests of MongoDB Strategy", () => {
 
     it("Delete a hero", async () => {
         const heroDeleted = await database.delete(MOCK_HERO_UPDATE.id);
-        assert.deepEqual( heroDeleted.deletedCount, 1)
+        assert.deepEqual(heroDeleted.deletedCount, 1);
     });
 });
