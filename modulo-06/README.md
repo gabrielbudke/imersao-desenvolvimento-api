@@ -18,8 +18,6 @@
 ## :pushpin: Info
 Criando um CRUD utilizando o banco de dados relacional Postgres sendo executado no container Docker e o padrão Strategy.
 
-## :open_file_folder: Conteúdos
-
 ## :fire: Execução
 1. Acessar a pasta /multi-db-postgres através do terminal
 2. Executar o comando ```npm install```

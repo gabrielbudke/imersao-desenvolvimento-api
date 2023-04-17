@@ -4,7 +4,7 @@
 </div>
 
 <h3 align="center">
-  Projeto multi-banco de dados - MongoDB
+  Refactoring projeto multi-banco de dados - MongoDB
 </h3>
 
 <p align="center">
@@ -16,7 +16,7 @@
 </p>
 
 ## :pushpin: Info
-Criando um CRUD utilizando o banco de dados NoSQL MongoDB sendo executado no container Docker e o padrão Strategy.
+Refatorando o projeto CRUD utilizando o banco de dados NoSQL MongoDB sendo executado no container Docker e o padrão Strategy.
 
 ## :fire: Execução
 1. Acessar a pasta /multi-db-mongo através do terminal

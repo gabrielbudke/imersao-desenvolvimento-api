@@ -4,7 +4,7 @@
 </div>
 
 <h3 align="center">
-  Banco de Dados - Projeto Multi-banco de dados
+  Refactoring projeto multi-banco de dados - Postgres
 </h3>
 
 <p align="center">
@@ -15,28 +15,19 @@
   <img alt="language count" src="https://img.shields.io/github/languages/count/gabrielbudke/imersao-desenvolvimento-api?color=539E43&style=flat-square">
 </p>
 
-## :gear: Comandos Docker
+## :pushpin: Info
+Refatorando o projeto CRUD utilizando o banco de dados relacional Postgres sendo executado no container Docker e o padrão Strategy.
 
-### Criando a imagem do postgres
-```
-docker run \
-    --name postgres \
-    -e POSTGRES_USER=admin \
-    -e POSTGRES_PASSWORD=adminadmin \
-    -e POSTGRES_DB=heroes \
-    -p 5432:5432 \
-    -d \
-    postgres
-```
+## :fire: Execução
+1. Acessar a pasta /multi-db-postgres através do terminal
+2. Executar o comando ```npm install```
+3. Executar o comando ```npm test``` para visualizar o resultado dos testes.
 
-#### Criando a imagem do client adminer
-```
-docker run \
-    --name adminer \
-    -p 8080:8080 \
-    --link postgres:postgres \
-    -d \
-    adminer 
-```
+## :rocket: Tecnologia
+- [docker](https://hub.docker.com/_/postgres)
+- [postgres](https://www.postgresql.org/)
+- [sequelize](https://sequelize.org/)
+- [mocha](https://mochajs.org/)
+
 ---
 Made by Gabriel Sousa
