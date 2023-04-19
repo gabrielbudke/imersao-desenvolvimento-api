@@ -2,7 +2,7 @@ import { DataTypes, Model } from "sequelize";
 
 class Hero extends Model {
     static init(connection) {
-        super.init({
+        return super.init({
             id: {
                 type: DataTypes.INTEGER,
                 autoIncrement: true,
@@ -19,10 +19,9 @@ class Hero extends Model {
             }
         }, {
             sequelize: connection,
+            freezeTableName: true,
             timestamps: false,
         });
-
-        // await Hero.sync();
     }
 }
 

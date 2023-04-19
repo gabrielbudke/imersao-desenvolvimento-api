@@ -21,8 +21,24 @@ class Postgres extends InterfaceStrategy {
         }
     }
 
-    create() {
-        console.log("[postgres]:", "Created with postgres");
+    async create(hero) {
+        const { dataValues } = await this._schema.create(hero);
+        return dataValues;
+    }
+
+    async read(query = {}) {
+        const heroes = await this._schema.findAll({
+            raw: true,
+            where: query
+        });
+
+        return heroes;
+    }
+
+    async deleteAll() {
+        await this._schema.destroy({
+            truncate: true
+        });
     }
 
     static async connect() {
@@ -31,9 +47,13 @@ class Postgres extends InterfaceStrategy {
     }
 
     static async defineModel(connection, schema) {
-        const model = connection.defineModel(
-            schema.name, schema.schema, schema.options
-        );
+        const model = schema.init(connection);
+        await model.sync();
+        return model;
+    }
+
+    async disconnect() {
+        await this._connection.close();
     }
 }
 

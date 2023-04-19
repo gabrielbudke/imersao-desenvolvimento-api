@@ -7,12 +7,12 @@ class ContextDatabase {
         return this._databaseStrategy.isConnected();
     }
 
-    create() {
-        return this._databaseStrategy.create();
+    create(hero) {
+        return this._databaseStrategy.create(hero);
     }
 
-    read() {
-        return this._databaseStrategy.read();
+    read(heroId) {
+        return this._databaseStrategy.read(heroId);
     }
 
     update() {
@@ -21,6 +21,10 @@ class ContextDatabase {
 
     delete() {
         return this._databaseStrategy.update();
+    }
+
+    disconnect() {
+        return this._databaseStrategy.disconnect();
     }
 }
 
