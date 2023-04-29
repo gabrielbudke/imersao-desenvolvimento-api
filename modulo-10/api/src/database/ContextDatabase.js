@@ -3,6 +3,10 @@ class ContextDatabase {
         this._databaseStrategy = databaseStrategy;
     }
 
+    setDatabaseStrategy(databaseStrategy) {
+        this._databaseStrategy = databaseStrategy;
+    }
+
     isConnected() {
         return this._databaseStrategy.isConnected();
     }
@@ -15,12 +19,16 @@ class ContextDatabase {
         return this._databaseStrategy.read(heroId);
     }
 
-    update() {
-        return this._databaseStrategy.update();
+    update(id, hero) {
+        return this._databaseStrategy.update(id, hero);
     }
 
-    delete() {
-        return this._databaseStrategy.update();
+    delete(id) {
+        return this._databaseStrategy.delete(id);
+    }
+
+    deleteAll() {
+        return this._databaseStrategy.deleteAll();
     }
 
     disconnect() {

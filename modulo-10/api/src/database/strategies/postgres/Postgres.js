@@ -2,7 +2,6 @@ import InterfaceStrategy from "../InterfaceStrategy.js";
 import { Sequelize } from "sequelize";
 
 import databaseConfig from "./config/database-config.js";
-import Hero from "./schemas/Hero.js";
 
 class Postgres extends InterfaceStrategy {
     constructor(connection, schema) {
@@ -33,6 +32,22 @@ class Postgres extends InterfaceStrategy {
         });
 
         return heroes;
+    }
+
+    update(heroId, hero) {
+        return this._schema.update(hero, {
+            where: {
+                id: heroId
+            }
+        });
+    }
+
+    delete(heroId) {
+        return this._schema.destroy({
+            where: {
+                id: heroId
+            }
+        });
     }
 
     async deleteAll() {
