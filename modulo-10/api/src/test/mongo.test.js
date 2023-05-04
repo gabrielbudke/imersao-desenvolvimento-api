@@ -16,7 +16,7 @@ describe("Mongo Strategy", () => {
     });
 
     after(async () => {
-        await database.deleteAll();
+        // await database.deleteAll(); --> limpa o banco de dados mongo
         MongoDb.disconnect();
     });
 
@@ -36,7 +36,7 @@ describe("Mongo Strategy", () => {
     });
 
     it("should update a hero", async () => {
-        const [hero] = await database.read({ power: HERO_MOCK.power });
+        const [hero] = await database.read({ name: HERO_MOCK.name });
         const heroId = hero._id.toString();
         const heroUpdated = await database.update(heroId, { name: "Shazam" });
         assert.deepEqual(heroUpdated.modifiedCount, 1);

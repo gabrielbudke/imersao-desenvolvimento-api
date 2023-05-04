@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "mocha src/test",
-    "start": "node src/server.js"
+    "start": "node --watch src/app.js"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +19,7 @@
     "sequelize": "^6.31.0"
   },
   "devDependencies": {
+    "@hapi/code": "^9.0.3",
     "mocha": "^10.2.0"
   }
 }

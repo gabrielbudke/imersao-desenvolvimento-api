@@ -15,8 +15,8 @@ class ContextDatabase {
         return this._databaseStrategy.create(hero);
     }
 
-    read(heroId) {
-        return this._databaseStrategy.read(heroId);
+    read(heroId, skip, limit) {
+        return this._databaseStrategy.read(heroId, skip, limit);
     }
 
     update(id, hero) {

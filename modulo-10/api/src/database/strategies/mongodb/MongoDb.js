@@ -36,8 +36,8 @@ class MongoDb extends InterfaceStrategy {
         return this._schema.create(hero);
     }
 
-    read(query) {
-        return this._schema.find(query);
+    read(query, skip, limit) {
+        return this._schema.find(query).limit(limit).skip(skip);
     }
 
     update(id, hero) {
