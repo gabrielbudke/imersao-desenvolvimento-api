@@ -16,7 +16,7 @@ describe("Mongo Strategy", () => {
     });
 
     after(async () => {
-        // await database.deleteAll(); --> limpa o banco de dados mongo
+        await database.deleteAll(); // --> limpa o banco de dados mongo;
         MongoDb.disconnect();
     });
 

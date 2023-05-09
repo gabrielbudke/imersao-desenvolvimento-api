@@ -1,11 +1,11 @@
 import { expect } from "@hapi/code";
-import { start } from "../server.js";
+import { init } from "../server.js";
 
 describe("API", () => {
-    let server;
 
+    let server;
     before(async () => {
-        server = await start();
+        server = await init();
     });
 
     // after(async () => {
@@ -13,23 +13,36 @@ describe("API", () => {
     // });
 
     it("should read heroes at /heroes", async () => {
+        const LIMIT = 10;
         const response = await server.inject({
             method: "GET",
-            url: "/heroes"
+            url: `/heroes?skip=0&limit=${LIMIT}`
         });
         expect(response.statusCode).to.equal(200);
     });
 
-    it("should read a limit of heroes", async () => {
-        const LIMIT = 3;
-
+    it("should not read a limit of heroes because of wrong limit parameter", async () => {
+        const LIMIT = "AEEE";
         const response = await server.inject({
             method: "GET",
-            url: `/heroes?skip=0&limit=${LIMIT}&name=Flash`
+            url: `/heroes?skip=0&limit=${LIMIT}`
         });
 
-        expect(response.statusCode).equal(200);
-        expect(response.result).length(LIMIT);
+        expect(response.result.message).to.equals("Limit is missing or invalid!");
+        expect(response.statusCode).to.equal(400);
+    });
+
+    it("should read a heroe filtred by name", async () => {
+        const LIMIT = 10;
+        const NAME = "Batman";
+        const response = await server.inject({
+            method: "GET",
+            url: `/heroes?skip=0&limit=${LIMIT}&name=${NAME}`
+        });
+
+
+        expect(response.result).to.have.length(1);
+        expect(response.statusCode).to.equal(200);
     });
 
     it("should create hero at /heroes", async () => {

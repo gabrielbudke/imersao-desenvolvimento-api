@@ -10,7 +10,24 @@ const server = Hapi.server({
     host: "localhost"
 });
 
-const start = async () => {
+// const start = async () => {
+
+//     const connection = await MongoDB.connect();
+//     const database = new ContextDatabase(new MongoDB(connection, HeroSchema));
+
+//     const methods = HeroRoute.methods();
+//     const heroRoutes = new HeroRoute(database);
+
+//     const routes = mapRoutes(heroRoutes, methods);
+//     server.route(routes);
+
+//     return server;
+//     await server.start();
+//     console.log("[server]", `Server running at: ${server.info.uri}`);
+//     return server;
+// };
+
+const configServer = async () => {
 
     const connection = await MongoDB.connect();
     const database = new ContextDatabase(new MongoDB(connection, HeroSchema));
@@ -21,14 +38,19 @@ const start = async () => {
     const routes = mapRoutes(heroRoutes, methods);
     server.route(routes);
 
-    await server.start();
-    console.log("[server]", `Server running at: ${server.info.uri}`);
     return server;
 };
 
-process.on('unhandledRejection', (err) => {
-    console.log(err);
-    process.exit(1);
-});
+const init = async () => {
+    const server = await configServer();
+    await server.initialize();
+    return server;
+};
 
-export { start };
+const start = async () => {
+    const server = await configServer();
+    await server.start();
+    console.log("[server]", `Server running at: ${server.info.uri}`);
+};
+
+export { init, start };

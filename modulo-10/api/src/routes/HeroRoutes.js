@@ -10,14 +10,24 @@ export default class HeroRoute extends BaseRoute {
         return {
             method: "GET",
             path: "/heroes",
-            handler: (request, h) => {
+            handler: async (request, h) => {
                 try {
-                    const { name, skip, limit } = request.query;
-                    const heroes = this._database.read({ name }, skip, limit);
-                    return heroes;
+                    const { skip, limit, ...filters } = request.query;
+                    console.log("filters", filters);
+                    // const query = filters ? filters : {};
 
+                    if (isNaN(skip)) {
+                        throw Error("Skip is missing or invalid!");
+                    }
+
+                    if (isNaN(limit)) {
+                        throw Error("Limit is missing or invalid!");
+                    }
+
+                    const heroes = await this._database.read(filters, skip, limit);
+                    return heroes;
                 } catch (error) {
-                    return h.response('404 Error! Page Not Found!').code(404);
+                    return h.response({ message: error.message }).code(400);
                 }
             }
         };
