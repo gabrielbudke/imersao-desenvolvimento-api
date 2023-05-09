@@ -1,4 +1,5 @@
 import BaseRoute from "./BaseRoute.js";
+import Joi from "joi";
 
 export default class HeroRoute extends BaseRoute {
     constructor(database) {
@@ -10,20 +11,21 @@ export default class HeroRoute extends BaseRoute {
         return {
             method: "GET",
             path: "/heroes",
+            options: {
+                validate: {
+                    failAction: (request, h, error) => {
+                        throw error;
+                    },
+                    query: Joi.object({
+                        skip: Joi.number().integer().default(0),
+                        limit: Joi.number().integer().min(1).max(100).default(10),
+                        name: Joi.string().default("")
+                    })
+                }
+            },
             handler: async (request, h) => {
                 try {
                     const { skip, limit, ...filters } = request.query;
-                    console.log("filters", filters);
-                    // const query = filters ? filters : {};
-
-                    if (isNaN(skip)) {
-                        throw Error("Skip is missing or invalid!");
-                    }
-
-                    if (isNaN(limit)) {
-                        throw Error("Limit is missing or invalid!");
-                    }
-
                     const heroes = await this._database.read(filters, skip, limit);
                     return heroes;
                 } catch (error) {
