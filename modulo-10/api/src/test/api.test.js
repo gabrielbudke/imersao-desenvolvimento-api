@@ -45,7 +45,7 @@ describe("API", () => {
     });
 
     it("should read a hero filtered by name", async () => {
-        const LIMIT = 10;
+        const LIMIT = 1;
         const NAME = "Flash";
         const response = await server.inject({
             method: "GET",
