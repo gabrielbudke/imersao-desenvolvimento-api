@@ -1,6 +1,6 @@
 <div align="center">   
    <img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/233_Node_Js_logo-256.png" width="180px">   
-   <h1>Módulo 5</h1>
+   <h1>Módulo 8</h1>
 </div>
 
 <h3 align="center">
@@ -19,7 +19,7 @@
 Refatorando o projeto CRUD utilizando o banco de dados NoSQL MongoDB sendo executado no container Docker e o padrão Strategy.
 
 ## :fire: Execução
-1. Acessar a pasta /multi-db-mongo através do terminal
+1. Acessar a pasta /multi-db-refactoring-mongo através do terminal
 2. Executar o comando ```npm install```
 3. Executar o comando ```npm test``` para visualizar o resultado dos testes.
 

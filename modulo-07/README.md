@@ -1,6 +1,6 @@
 <div align="center">   
    <img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/233_Node_Js_logo-256.png" width="180px">   
-   <h1>Módulo 5</h1>
+   <h1>Módulo 7</h1>
 </div>
 
 <h3 align="center">
