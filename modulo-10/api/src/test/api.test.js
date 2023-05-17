@@ -1,11 +1,23 @@
 import { expect } from "@hapi/code";
 import { init } from "../server.js";
 
+const MOCK_HERO = {
+    name: "Gavião-Arqueiro",
+    power: "Flechas"
+};
+
 describe("API", () => {
 
     let server;
     before(async () => {
         server = await init();
+        const response = await server.inject({
+            method: "POST",
+            url: "/heroes",
+            payload: MOCK_HERO
+        });
+        //console.log("response", );
+        MOCK_HERO.id = response.result._id.toString();
     });
 
     // after(async () => {
@@ -30,6 +42,7 @@ describe("API", () => {
                 power: "Velocidade"
             }
         });
+
         expect(response.statusCode).to.equal(201);
     });
 
@@ -54,6 +67,45 @@ describe("API", () => {
 
         expect(response.result).to.have.length(1);
         expect(response.statusCode).to.equal(200);
+    });
+
+    it("should update a part of hero", async () => {
+        const response = await server.inject({
+            method: "PATCH",
+            url: `/heroes/${MOCK_HERO.id}`,
+            payload: {
+                name: "Arqueiro-Verde",
+                power: "Flechas"
+            }
+        });
+
+        expect(response.statusCode).to.equal(200);
+    });
+
+    it("should not update a hero because id is incorrect", async () => {
+
+        const incorrectId = "646421981674d96bf2af0ed0";
+        const response = await server.inject({
+            method: "PATCH",
+            url: `/heroes/${incorrectId}`,
+            payload: {
+                name: "Arqueiro-Verde",
+                power: "Flechas"
+            }
+        });
+
+        expect(response.statusCode).to.equal(412);
+        expect(response.result.message).to.equals(`Could not find Hero with id ${incorrectId}`);
+    });
+
+    it("should delete a hero", async () => {
+        const id = MOCK_HERO.id;
+        const response = await server.inject({
+            method: "DELETE",
+            url: `/heroes/${id}`
+        });
+
+        expect(response.result.message).to.equals(`Hero deleted with success`);
     });
 
 });
