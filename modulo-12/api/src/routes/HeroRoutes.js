@@ -2,6 +2,10 @@ import BaseRoute from "./BaseRoute.js";
 import Joi from "joi";
 import Boom from "@hapi/boom";
 
+const headers = Joi.object({
+    authorization: Joi.string().required()
+}).unknown();
+
 export default class HeroRoute extends BaseRoute {
     constructor(database) {
         super();
@@ -24,16 +28,13 @@ export default class HeroRoute extends BaseRoute {
                         skip: Joi.number().integer().default(0),
                         limit: Joi.number().integer().min(1).max(100).default(10),
                         name: Joi.string().min(3).max(50).optional()
-                    })
+                    }),
+                    headers
                 }
             },
             handler: async (request, h) => {
                 try {
                     const { skip, limit, ...filters } = request.query;
-                    // const query = filters ? {
-                    //     name: { $regex: `.*${filters.name}.*` }
-                    // } : {};
-
                     const query = Object.keys(filters).length !== 0 ? {
                         name: { $regex: `.*${filters.name}.*` }
                     } : {};
@@ -53,6 +54,7 @@ export default class HeroRoute extends BaseRoute {
             method: "POST",
             path: "/heroes",
             options: {
+                auth: false,
                 tags: ["api"],
                 description: "Deve cadastrar herói",
                 notes: "Deve cadastras herói por nome e poder.",
@@ -63,7 +65,8 @@ export default class HeroRoute extends BaseRoute {
                     payload: Joi.object({
                         name: Joi.string().min(3).max(30).required(),
                         power: Joi.string().min(3).max(30).required()
-                    }).label("createHero")
+                    }).label("createHero"),
+                    headers
                 }
             },
             handler: async (request, h) => {
@@ -96,7 +99,8 @@ export default class HeroRoute extends BaseRoute {
                     payload: Joi.object({
                         name: Joi.string().min(3).max(30),
                         power: Joi.string().min(3).max(30)
-                    }).label("updateHero")
+                    }).label("updateHero"),
+                    headers
                 }
             },
             handler: async (request, h) => {
@@ -130,7 +134,8 @@ export default class HeroRoute extends BaseRoute {
                     },
                     params: Joi.object({
                         id: Joi.string().required()
-                    })
+                    }),
+                    headers
                 }
             },
             handler: async (request, h) => {

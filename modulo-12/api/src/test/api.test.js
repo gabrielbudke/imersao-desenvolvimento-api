@@ -1,6 +1,7 @@
 import { expect } from "@hapi/code";
 import { init } from "../server.js";
 
+const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJnZW5lcmljLnVzZXIiLCJpYXQiOjE2ODQ4OTU4ODR9.9AKouKXjGlsKirbdwykgEetGzWHS-LilkaofBX87WM4";
 const MOCK_HERO = {
     name: "Gavião-Arqueiro",
     power: "Flechas"
@@ -14,9 +15,11 @@ describe("API", () => {
         const response = await server.inject({
             method: "POST",
             url: "/heroes",
+            headers: {
+                Authorization: TOKEN
+            },
             payload: MOCK_HERO
         });
-        //console.log("response", );
         MOCK_HERO.id = response.result._id.toString();
     });
 
@@ -24,10 +27,27 @@ describe("API", () => {
     //     await server.stop();
     // });
 
+    it("should get a token", async () => {
+        const response = await server.inject({
+            method: "POST",
+            url: "/login",
+            payload: {
+                username: "generic.user",
+                password: "12345678"
+            }
+        });
+
+        expect(response.statusCode).to.equal(200);
+
+    });
+
     it("should read heroes at /heroes", async () => {
         const LIMIT = 10;
         const response = await server.inject({
             method: "GET",
+            headers: {
+                Authorization: TOKEN
+            },
             url: `/heroes?skip=0&limit=${LIMIT}`
         });
         expect(response.statusCode).to.equal(200);
@@ -37,6 +57,9 @@ describe("API", () => {
         const response = await server.inject({
             method: "POST",
             url: "/heroes",
+            headers: {
+                Authorization: TOKEN
+            },
             payload: {
                 name: "Flash",
                 power: "Velocidade"
@@ -50,6 +73,9 @@ describe("API", () => {
         const LIMIT = "AEEE";
         const response = await server.inject({
             method: "GET",
+            headers: {
+                Authorization: TOKEN
+            },
             url: `/heroes?skip=0&limit=${LIMIT}`
         });
 
@@ -62,6 +88,9 @@ describe("API", () => {
         const NAME = MOCK_HERO.name;
         const response = await server.inject({
             method: "GET",
+            headers: {
+                Authorization: TOKEN
+            },
             url: `/heroes?skip=0&limit=${LIMIT}&name=${NAME}`
         });
 
@@ -73,6 +102,9 @@ describe("API", () => {
         const response = await server.inject({
             method: "PATCH",
             url: `/heroes/${MOCK_HERO.id}`,
+            headers: {
+                Authorization: TOKEN
+            },
             payload: {
                 name: "Arqueiro-Verde",
                 power: "Flechas"
@@ -87,6 +119,9 @@ describe("API", () => {
         const response = await server.inject({
             method: "PATCH",
             url: `/heroes/${incorrectId}`,
+            headers: {
+                Authorization: TOKEN
+            },
             payload: {
                 name: "Arqueiro-Verde",
                 power: "Flechas"
@@ -101,6 +136,9 @@ describe("API", () => {
         const id = MOCK_HERO.id;
         const response = await server.inject({
             method: "DELETE",
+            headers: {
+                Authorization: TOKEN
+            },
             url: `/heroes/${id}`
         });
 

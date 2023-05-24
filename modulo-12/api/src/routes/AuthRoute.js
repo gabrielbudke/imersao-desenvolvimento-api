@@ -17,8 +17,9 @@ export default class AuthRoute extends BaseRoute {
     login() {
         return {
             method: "POST",
-            path: "/heroes/auth",
+            path: "/login",
             options: {
+                auth: false,
                 tags: ["api"],
                 description: "Obter token",
                 notes: "Realiza a autenticação com usuário e senha.",
@@ -39,8 +40,8 @@ export default class AuthRoute extends BaseRoute {
                     return Boom.unauthorized();
                 }
 
-                const token = jwt.sign({ id: 1, username }, this._secret);
-                return { token };
+                const accessToken = jwt.sign({ id: 1, username }, this._secret);
+                return { accessToken };
             }
         };
     }

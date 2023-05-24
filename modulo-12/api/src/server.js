@@ -2,6 +2,8 @@ import Hapi from "@hapi/hapi";
 import Vision from "@hapi/vision";
 import Inert from "@hapi/inert";
 import HapiSwagger from "hapi-swagger";
+import HapiAuth from "hapi-auth-jwt2";
+
 import ContextDatabase from "./database/ContextDatabase.js";
 import MongoDB from "./database/strategies/mongodb/MongoDb.js";
 import HeroSchema from "./database/strategies/mongodb/schemas/Hero.js";
@@ -21,6 +23,11 @@ const configServer = async () => {
     const connection = await MongoDB.connect();
     const database = new ContextDatabase(new MongoDB(connection, HeroSchema));
 
+    const routes = [
+        ...mapRoutes(new HeroRoute(database), HeroRoute.methods()),
+        ...mapRoutes(new AuthRoute(JWT_SECRET), AuthRoute.methods())
+    ];
+
     const swaggerOptions = {
         info: {
             title: "API Heroes - Imersão Desenvolvimento de APIS",
@@ -29,25 +36,38 @@ const configServer = async () => {
     };
 
     await server.register([
-        Vision, Inert,
+        HapiAuth, Vision, Inert,
         {
             plugin: HapiSwagger,
             options: swaggerOptions
         }
     ]);
 
-    const routes = [
-        ...mapRoutes(new HeroRoute(database), HeroRoute.methods()),
-        ...mapRoutes(new AuthRoute(JWT_SECRET), AuthRoute.methods())
-    ];
+    server.auth.strategy("jwt", "jwt", {
+        key: JWT_SECRET,
+        validate: async (decoded, request, h) => {
+            // verifica no banco se o usuário está ativo
 
+            return {
+                isValid: true
+            };
+        }
+    });
+
+    server.auth.default("jwt");
     server.route(routes);
+
+
 
     return server;
 };
 
 const init = async () => {
     const server = await configServer();
+
+
+
+
     await server.initialize();
     return server;
 };
