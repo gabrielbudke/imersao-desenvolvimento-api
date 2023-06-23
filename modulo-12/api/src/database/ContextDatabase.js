@@ -19,8 +19,8 @@ class ContextDatabase {
         return this._databaseStrategy.read(heroId, skip, limit);
     }
 
-    update(id, hero) {
-        return this._databaseStrategy.update(id, hero);
+    update(id, hero, upsert = false) {
+        return this._databaseStrategy.update(id, hero, upsert);
     }
 
     delete(id) {

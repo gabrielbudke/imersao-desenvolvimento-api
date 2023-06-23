@@ -1,17 +1,40 @@
 import { expect } from "@hapi/code";
 import { init } from "../server.js";
+import Postgres from "../database/strategies/postgres/Postgres.js";
+import ContextDatabase from "../database/ContextDatabase.js";
+import User from "../database/strategies/postgres/schemas/User.js";
+import passwordHelper from "../helpers/PasswordHelper.js";
+
 
 const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJnZW5lcmljLnVzZXIiLCJpYXQiOjE2ODQ4OTU4ODR9.9AKouKXjGlsKirbdwykgEetGzWHS-LilkaofBX87WM4";
+const MOCK_USER = {
+    username: "generic.user",
+    password: "12345678"
+};
+
 const MOCK_HERO = {
     name: "Gavião-Arqueiro",
     power: "Flechas"
 };
 
+let databaseUser = {};
 describe("API", () => {
 
     let server;
     before(async () => {
         server = await init();
+        const connection = await Postgres.connect();
+        const schema = await Postgres.defineModel(connection, User);
+        databaseUser = new ContextDatabase(new Postgres(connection, schema));
+
+        const password = await passwordHelper.hashPassword(MOCK_USER.password);
+        console.log(MOCK_USER);
+
+        await databaseUser.update(null, {
+            ...MOCK_USER,
+            password
+        }, true);
+
         const response = await server.inject({
             method: "POST",
             url: "/heroes",
@@ -23,18 +46,20 @@ describe("API", () => {
         MOCK_HERO.id = response.result._id.toString();
     });
 
-    // after(async () => {
-    //     await server.stop();
-    // });
+    after(async () => {
+        await server.stop();
+
+        // await User.destroy({
+        //     truncate: true
+        // });
+        // await databaseUser.disconnect();
+    });
 
     it("should get a token", async () => {
         const response = await server.inject({
             method: "POST",
             url: "/login",
-            payload: {
-                username: "generic.user",
-                password: "12345678"
-            }
+            payload: MOCK_USER
         });
 
         expect(response.statusCode).to.equal(200);

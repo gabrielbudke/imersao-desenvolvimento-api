@@ -10,22 +10,28 @@ import HeroSchema from "./database/strategies/mongodb/schemas/Hero.js";
 import HeroRoute from "./routes/HeroRoutes.js";
 import mapRoutes from "./utils/routing-mapping.js";
 import AuthRoute from "./routes/AuthRoute.js";
+import Postgres from "./database/strategies/postgres/Postgres.js";
+import User from "./database/strategies/postgres/schemas/User.js";
 
 const JWT_SECRET = "MEU_SEGREDO_123";
 
 const server = Hapi.server({
-    port: 3000,
+    port: 3333,
     host: "localhost"
 });
 
 const configServer = async () => {
 
-    const connection = await MongoDB.connect();
-    const database = new ContextDatabase(new MongoDB(connection, HeroSchema));
+    const connectionMongo = await MongoDB.connect();
+    const databaseMongo = new ContextDatabase(new MongoDB(connectionMongo, HeroSchema));
+
+    const connectionPostgres = await Postgres.connect();
+    const userSchema = await Postgres.defineModel(connectionPostgres, User);
+    const databasePostgres = new ContextDatabase(new Postgres(connectionPostgres, userSchema));
 
     const routes = [
-        ...mapRoutes(new HeroRoute(database), HeroRoute.methods()),
-        ...mapRoutes(new AuthRoute(JWT_SECRET), AuthRoute.methods())
+        ...mapRoutes(new HeroRoute(databaseMongo), HeroRoute.methods()),
+        ...mapRoutes(new AuthRoute(databasePostgres, JWT_SECRET), AuthRoute.methods())
     ];
 
     const swaggerOptions = {

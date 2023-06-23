@@ -34,8 +34,9 @@ class Postgres extends InterfaceStrategy {
         return heroes;
     }
 
-    update(heroId, hero) {
-        return this._schema.update(hero, {
+    update(heroId, hero, upsert = false) {
+        const method = upsert ? "upsert" : "update";
+        return this._schema[method](hero, {
             where: {
                 id: heroId
             }

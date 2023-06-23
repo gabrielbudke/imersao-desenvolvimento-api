@@ -2,6 +2,7 @@ import BaseRoute from "./BaseRoute.js";
 import Joi from "joi";
 import Boom from "@hapi/boom";
 import jwt from "jsonwebtoken";
+import passwordHelper from "../helpers/PasswordHelper.js";
 
 const USER = {
     username: "generic.user",
@@ -9,8 +10,9 @@ const USER = {
 };
 
 export default class AuthRoute extends BaseRoute {
-    constructor(secret) {
+    constructor(database, secret) {
         super();
+        this._database = database;
         this._secret = secret;
     }
 
@@ -35,12 +37,24 @@ export default class AuthRoute extends BaseRoute {
             },
             handler: async (request, h) => {
                 const { username, password } = request.payload;
+                console.log("password", password);
+                const [user] = await this._database.read({
+                    username: username.toLowerCase()
+                });
+                console.log("[user]", user);
 
-                if (username.toLowerCase() != USER.username || password != USER.password) {
-                    return Boom.unauthorized();
+                if (!user) {
+                    return Boom.notFound("User not found!");
                 }
 
-                const accessToken = jwt.sign({ id: 1, username }, this._secret);
+                const passwordMatch = await passwordHelper.comparePassword(password, user.password);
+                console.log("[passwordMatch]", passwordMatch);
+
+                if (!passwordMatch) {
+                    return Boom.unauthorized("User or pass invalid!");
+                }
+
+                const accessToken = jwt.sign({ id: user.id, username }, this._secret);
                 return { accessToken };
             }
         };
