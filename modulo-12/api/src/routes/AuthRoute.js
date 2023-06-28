@@ -37,18 +37,16 @@ export default class AuthRoute extends BaseRoute {
             },
             handler: async (request, h) => {
                 const { username, password } = request.payload;
-                console.log("password", password);
+
                 const [user] = await this._database.read({
                     username: username.toLowerCase()
                 });
-                console.log("[user]", user);
 
                 if (!user) {
                     return Boom.notFound("User not found!");
                 }
 
                 const passwordMatch = await passwordHelper.comparePassword(password, user.password);
-                console.log("[passwordMatch]", passwordMatch);
 
                 if (!passwordMatch) {
                     return Boom.unauthorized("User or pass invalid!");

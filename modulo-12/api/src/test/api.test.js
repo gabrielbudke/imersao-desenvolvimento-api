@@ -23,12 +23,12 @@ describe("API", () => {
     let server;
     before(async () => {
         server = await init();
+
         const connection = await Postgres.connect();
         const schema = await Postgres.defineModel(connection, User);
         databaseUser = new ContextDatabase(new Postgres(connection, schema));
 
         const password = await passwordHelper.hashPassword(MOCK_USER.password);
-        console.log(MOCK_USER);
 
         await databaseUser.update(null, {
             ...MOCK_USER,
@@ -48,11 +48,6 @@ describe("API", () => {
 
     after(async () => {
         await server.stop();
-
-        // await User.destroy({
-        //     truncate: true
-        // });
-        // await databaseUser.disconnect();
     });
 
     it("should get a token", async () => {
@@ -63,8 +58,21 @@ describe("API", () => {
         });
 
         expect(response.statusCode).to.equal(200);
-
     });
+
+    it("should not authorized user", async () => {
+        const response = await server.inject({
+            method: "POST",
+            url: "/login",
+            payload: {
+                username: "generic.user",
+                password: "adminadmin"
+            }
+        });
+
+        expect(response.statusCode).to.equal(401);
+    });
+
 
     it("should read heroes at /heroes", async () => {
         const LIMIT = 10;

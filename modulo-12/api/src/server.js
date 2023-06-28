@@ -53,6 +53,13 @@ const configServer = async () => {
         key: JWT_SECRET,
         validate: async (decoded, request, h) => {
             // verifica no banco se o usuário está ativo
+            const [user] = await databasePostgres.read({
+                id: decoded.id
+            });
+
+            if (!user) {
+                return { isValid: false };
+            }
 
             return {
                 isValid: true

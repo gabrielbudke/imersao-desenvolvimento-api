@@ -32,6 +32,12 @@ Esse repositório é destinado ao curso Imersão em Desenvolvimento de API minis
 - [4° Módulo - Além da Web. Criando ferramentas de linha de comando](./modulo-04/)
 - [5° Módulo - Projeto Multi-Banco de Dados](./modulo-05/)
 - [6° Módulo - Multi-Banco de Dados - Postgres](./modulo-06/)
+- [7° Módulo - Multi-Banco de Dados - MongoDb](./modulo-07/)
+- [8° Módulo - Multi-Banco de Dados - Refactoring MongoDb](./modulo-08/)
+- [9° Módulo - Multi-Banco de Dados - Refactoring Postgres](./modulo-09/)
+- [10° Módulo - API - Desenvolvendo](./modulo-10/)
+- [11° Módulo - API - Documentação](./modulo-11/)
+- [12° Módulo - API - Autenticação](./modulo-12/)
 
 
 
