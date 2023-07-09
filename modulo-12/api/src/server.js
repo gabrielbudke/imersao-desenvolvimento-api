@@ -22,13 +22,13 @@ const __dirname = path.dirname(__filename);
 
 const env = process.env.NODE_ENV === "development" ? ".env.dev" : ".env";
 const configPath = path.join(__dirname, `${env}`);
-console.log("[configPath]", configPath);
+// console.log("[configPath]", configPath);
 
 config({
     path: configPath
 });
 
-// console.log("process.env.USER_MONGO_URL", process.env.USER_MONGO_URL);
+console.log("process.env.USER_POSTGRES_HOST", process.env.USER_POSTGRES_HOST);
 
 const JWT_SECRET = process.env.USER_JWT_KEY;
 
