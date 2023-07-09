@@ -20,9 +20,9 @@ import User from "./database/strategies/postgres/schemas/User.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const env = process.env.NODE_ENV == "development" ? "dev" : "prod";
+const env = process.env.NODE_ENV || "dev";
 const configPath = path.join(__dirname, "./config", `.env.${env}`);
-console.log("[configPath]", configPath);
+console.log("[process.env]", process.env);
 
 config({
     path: configPath
@@ -35,7 +35,7 @@ const JWT_SECRET = process.env.USER_JWT_KEY;
 
 const server = Hapi.server({
     //port: 3333,
-    port: process.env.PORT,
+    port: process.env.USER_SERVER_PORT,
     host: "localhost"
 });
 
