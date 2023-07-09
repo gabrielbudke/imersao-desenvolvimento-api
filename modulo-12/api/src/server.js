@@ -20,7 +20,7 @@ import User from "./database/strategies/postgres/schemas/User.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const env = process.env.NODE_ENV == "development" ? ".env.dev" : ".env";
+const env = process.env.NODE_ENV === "development" ? ".env.dev" : ".env";
 const configPath = path.join(__dirname, `${env}`);
 // console.log("[process.env]", process.env);
 
