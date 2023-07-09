@@ -28,8 +28,7 @@ config({
     path: configPath
 });
 
-// console.log("process.env.USER_MONGO_URL", process.env.USER_MONGO_URL);
-
+console.log("process.env.USER_MONGO_URL", process.env.USER_MONGO_URL);
 
 const JWT_SECRET = process.env.USER_JWT_KEY;
 
