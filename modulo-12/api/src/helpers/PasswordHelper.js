@@ -6,7 +6,7 @@ const compareAsync = promisify(bcrypt.compare);
 
 class PasswordHelper {
     hashPassword(password) {
-        return hashAsync(password, 3);
+        return hashAsync(password, Number(process.env.USER_SALT_PWD));
     }
 
     comparePassword(password, hash) {

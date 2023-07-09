@@ -1,3 +1,7 @@
+import { config } from "dotenv";
+import { fileURLToPath } from "url";
+import path from "path";
+
 import Hapi from "@hapi/hapi";
 import Vision from "@hapi/vision";
 import Inert from "@hapi/inert";
@@ -13,10 +17,25 @@ import AuthRoute from "./routes/AuthRoute.js";
 import Postgres from "./database/strategies/postgres/Postgres.js";
 import User from "./database/strategies/postgres/schemas/User.js";
 
-const JWT_SECRET = "MEU_SEGREDO_123";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const env = process.env.NODE_ENV == "development" ? "dev" : "prod";
+const configPath = path.join(__dirname, "./config", `.env.${env}`);
+console.log("[configPath]", configPath);
+
+config({
+    path: configPath
+});
+
+console.log("process.env.USER_MONGO_URL", process.env.USER_MONGO_URL);
+
+
+const JWT_SECRET = process.env.USER_JWT_KEY;
 
 const server = Hapi.server({
-    port: 3333,
+    //port: 3333,
+    port: process.env.PORT,
     host: "localhost"
 });
 

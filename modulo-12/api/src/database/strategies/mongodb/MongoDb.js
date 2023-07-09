@@ -21,7 +21,7 @@ class MongoDb extends InterfaceStrategy {
 
     static async connect() {
         try {
-            await mongoose.connect("mongodb://gabriel.sousa:admin@localhost:27017/heroes");
+            await mongoose.connect(process.env.USER_MONGO_URL);
             return mongoose.connection;
         } catch (error) {
             throw Error("Could not connect do MongoDB");
