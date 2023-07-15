@@ -35,7 +35,7 @@ const JWT_SECRET = process.env.USER_JWT_KEY;
 const server = Hapi.server({
     //port: 3333,
     port: process.env.USER_SERVER_PORT,
-    host: "localhost"
+    host: "0.0.0.0"
 });
 
 const configServer = async () => {
