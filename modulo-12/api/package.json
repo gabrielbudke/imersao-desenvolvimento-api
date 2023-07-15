@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "type": "module",
+  "engines": {
+    "node": "18"
+  },
   "scripts": {
     "test:api": "mocha src/test --ignore src/test/auth.test.js",
     "test:auth": "mocha src/test --file src/test/auth.test.js",
