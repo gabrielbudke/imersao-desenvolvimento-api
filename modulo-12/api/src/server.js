@@ -28,7 +28,7 @@ config({
     path: configPath
 });
 
-console.log("process.env.USER_POSTGRES_HOST", process.env.USER_POSTGRES_HOST);
+console.log("[process.env.NODE_ENV]", process.env.NODE_ENV);
 
 const JWT_SECRET = process.env.USER_JWT_KEY;
 
@@ -87,8 +87,6 @@ const configServer = async () => {
 
     server.auth.default("jwt");
     server.route(routes);
-
-
 
     return server;
 };
