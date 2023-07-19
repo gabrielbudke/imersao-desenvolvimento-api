@@ -13,7 +13,7 @@
     "test": "mocha src/test --timeout 10000",
     "dev": "node --watch src/app.js",
     "start": "node src/app.js",
-    "start:pm2": "npx pm2 start src/app.js"
+    "start:pm2": "pm2-runtime start src/app.js"
   },
   "keywords": [],
   "author": "",

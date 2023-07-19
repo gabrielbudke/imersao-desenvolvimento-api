@@ -28,8 +28,6 @@ config({
     path: configPath
 });
 
-console.log("[process.env.NODE_ENV]", process.env.NODE_ENV);
-
 const JWT_SECRET = process.env.USER_JWT_KEY;
 
 const server = Hapi.server({
