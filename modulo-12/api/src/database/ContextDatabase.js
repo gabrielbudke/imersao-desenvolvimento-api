@@ -36,4 +36,4 @@ class ContextDatabase {
     }
 }
 
-export default ContextDatabase;
+module.exports = ContextDatabase;

@@ -1,24 +1,26 @@
-import { config } from "dotenv";
-import { fileURLToPath } from "url";
-import path from "path";
+const { config } = require("dotenv");
+const { fileURLToPath } = require("url");
+const path = require("path");
 
-import Hapi from "@hapi/hapi";
-import Vision from "@hapi/vision";
-import Inert from "@hapi/inert";
-import HapiSwagger from "hapi-swagger";
-import HapiAuth from "hapi-auth-jwt2";
+const Hapi = require("@hapi/hapi");
+const Vision = require("@hapi/vision");
+const Inert = require("@hapi/inert");
+const HapiSwagger = require("hapi-swagger");
+const HapiAuth = require("hapi-auth-jwt2");
 
-import ContextDatabase from "./database/ContextDatabase.js";
-import MongoDB from "./database/strategies/mongodb/MongoDb.js";
-import HeroSchema from "./database/strategies/mongodb/schemas/Hero.js";
-import HeroRoute from "./routes/HeroRoutes.js";
-import mapRoutes from "./utils/routing-mapping.js";
-import AuthRoute from "./routes/AuthRoute.js";
-import Postgres from "./database/strategies/postgres/Postgres.js";
-import User from "./database/strategies/postgres/schemas/User.js";
+const ContextDatabase = require("./database/ContextDatabase.js");
+const MongoDB = require("./database/strategies/mongodb/MongoDb.js");
+const HeroSchema = require("./database/strategies/mongodb/schemas/Hero.js");
+const HeroRoute = require("./routes/HeroRoutes.js");
+const mapRoutes = require("./utils/routing-mapping.js");
+const AuthRoute = require("./routes/AuthRoute.js");
 
-const __filename = fileURLToPath(import.meta.url);
+const Postgres = require("./database/strategies/postgres/Postgres.js");
+const User = require("./database/strategies/postgres/schemas/User.js");
+
+/*const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+*/
 
 const env = process.env.NODE_ENV === "development" ? ".env.dev" : ".env";
 const configPath = path.join(__dirname, `${env}`);
@@ -105,4 +107,4 @@ const start = async () => {
     console.log("[server]", `Server running at: ${server.info.uri}`);
 };
 
-export { init, start };
+module.exports = { init, start };

@@ -1,5 +1,5 @@
-import { expect } from "@hapi/code";
-import passwordHelper from "../helpers/PasswordHelper.js";
+const { expect } = require("@hapi/code");
+const passwordHelper = require("../helpers/PasswordHelper.js");
 
 xdescribe("Password Helper", () => {
     it("should generate a hash from a password", async () => {

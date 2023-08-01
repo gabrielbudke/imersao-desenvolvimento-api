@@ -20,4 +20,4 @@ class InterfaceStrategy {
     }
 }
 
-export default InterfaceStrategy;
+module.exports = InterfaceStrategy;

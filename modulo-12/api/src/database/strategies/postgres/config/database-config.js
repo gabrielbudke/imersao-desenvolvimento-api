@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     dialect: "postgres",
     host: process.env.USER_POSTGRES_HOST,
     database: process.env.USER_POSTGRES_DATABASE,

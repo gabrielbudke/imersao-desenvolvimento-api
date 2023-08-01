@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import InterfaceStrategy from "../InterfaceStrategy.js";
+const mongoose = require("mongoose");
+const InterfaceStrategy = require("../InterfaceStrategy.js");
 
 const STATUS = {
     0: "Disconnected",
@@ -54,4 +54,4 @@ class MongoDb extends InterfaceStrategy {
 
 }
 
-export default MongoDb;
+module.exports = MongoDb;

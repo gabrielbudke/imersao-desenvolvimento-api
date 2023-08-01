@@ -1,5 +1,5 @@
-import bcrypt from "bcrypt";
-import { promisify } from "util";
+const bcrypt = require("bcrypt");
+const { promisify } = require("util");
 
 const hashAsync = promisify(bcrypt.hash);
 const compareAsync = promisify(bcrypt.compare);
@@ -14,4 +14,4 @@ class PasswordHelper {
     }
 }
 
-export default new PasswordHelper();
+module.exports = new PasswordHelper();

@@ -1,12 +1,12 @@
-import BaseRoute from "./BaseRoute.js";
-import Joi from "joi";
-import Boom from "@hapi/boom";
+const BaseRoute = require("./BaseRoute.js");
+const Joi = require("joi");
+const Boom = require("@hapi/boom");
 
 const headers = Joi.object({
     authorization: Joi.string().required()
 }).unknown();
 
-export default class HeroRoute extends BaseRoute {
+class HeroRoute extends BaseRoute {
     constructor(database) {
         super();
         this._database = database;
@@ -154,3 +154,5 @@ export default class HeroRoute extends BaseRoute {
         };
     }
 }
+
+module.exports = HeroRoute;

@@ -1,15 +1,15 @@
-import BaseRoute from "./BaseRoute.js";
-import Joi from "joi";
-import Boom from "@hapi/boom";
-import jwt from "jsonwebtoken";
-import passwordHelper from "../helpers/PasswordHelper.js";
+const BaseRoute = require("./BaseRoute.js");
+const Joi = require("joi");
+const Boom = require("@hapi/boom");
+const jwt = require("jsonwebtoken");
+const passwordHelper = require("../helpers/PasswordHelper.js");
 
 const USER = {
     username: "generic.user",
     password: "12345678"
 };
 
-export default class AuthRoute extends BaseRoute {
+class AuthRoute extends BaseRoute {
     constructor(database, secret) {
         super();
         this._database = database;
@@ -58,3 +58,5 @@ export default class AuthRoute extends BaseRoute {
         };
     }
 }
+
+module.exports = AuthRoute;

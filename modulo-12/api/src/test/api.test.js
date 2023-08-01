@@ -1,9 +1,9 @@
-import { expect } from "@hapi/code";
-import { init } from "../server.js";
-import Postgres from "../database/strategies/postgres/Postgres.js";
-import ContextDatabase from "../database/ContextDatabase.js";
-import User from "../database/strategies/postgres/schemas/User.js";
-import passwordHelper from "../helpers/PasswordHelper.js";
+const { expect } = require("@hapi/code");
+const { init } = require("../server.js");
+const Postgres = require("../database/strategies/postgres/Postgres.js");
+const ContextDatabase = require("../database/ContextDatabase.js");
+const User = require("../database/strategies/postgres/schemas/User.js");
+const passwordHelper = require("../helpers/PasswordHelper.js");
 
 
 const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJnZW5lcmljLnVzZXIiLCJpYXQiOjE2ODQ4OTU4ODR9.9AKouKXjGlsKirbdwykgEetGzWHS-LilkaofBX87WM4";

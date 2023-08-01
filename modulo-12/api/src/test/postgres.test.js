@@ -1,7 +1,7 @@
-import assert from "assert";
-import ContextDatabase from "../database/ContextDatabase.js";
-import Postgres from "../database/strategies/postgres/Postgres.js";
-import Hero from "../database/strategies/postgres/schemas/Hero.js";
+const assert = require("assert");
+const ContextDatabase = require("../database/ContextDatabase.js");
+const Postgres = require("../database/strategies/postgres/Postgres.js");
+const Hero = require("../database/strategies/postgres/schemas/Hero.js");
 
 const MOCK_CREATE_HERO = {
     name: "Gavião Arqueiro",

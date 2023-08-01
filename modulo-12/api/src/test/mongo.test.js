@@ -1,7 +1,7 @@
-import assert from "assert";
-import ContextDatabase from "../database/ContextDatabase.js";
-import MongoDb from "../database/strategies/mongodb/MongoDb.js";
-import HeroSchema from "../database/strategies/mongodb/schemas/Hero.js";
+const assert = require("assert");
+const ContextDatabase = require("../database/ContextDatabase.js");
+const MongoDb = require("../database/strategies/mongodb/MongoDb.js");
+const HeroSchema = require("../database/strategies/mongodb/schemas/Hero.js");
 
 const HERO_MOCK = {
     name: "Thor",

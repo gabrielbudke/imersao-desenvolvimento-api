@@ -1,7 +1,7 @@
-import InterfaceStrategy from "../InterfaceStrategy.js";
-import { Sequelize } from "sequelize";
+const InterfaceStrategy = require("../InterfaceStrategy.js");
+const { Sequelize } = require("sequelize");
 
-import databaseConfig from "./config/database-config.js";
+const databaseConfig = require("./config/database-config.js");
 
 class Postgres extends InterfaceStrategy {
     constructor(connection, schema) {
@@ -58,8 +58,8 @@ class Postgres extends InterfaceStrategy {
     }
 
     static async connect() {
-        const connection = new Sequelize(databaseConfig);
-        //const connection = new Sequelize("postgres://gabrielsousa:pVSpGR4sQaylHVYZbTLKbtKmNLOdSlN5@dpg-cipe9ad9aq0dcppp1lgg-a.ohio-postgres.render.com/heroes_xmjj?ssl=true");
+        //const connection = new Sequelize(databaseConfig);
+        const connection = new Sequelize("postgres://gabrielsousa:pVSpGR4sQaylHVYZbTLKbtKmNLOdSlN5@dpg-cipe9ad9aq0dcppp1lgg-a.ohio-postgres.render.com/heroes_xmjj?ssl=true");
         return connection;
     }
 
@@ -74,4 +74,4 @@ class Postgres extends InterfaceStrategy {
     }
 }
 
-export default Postgres;
+module.exports = Postgres;
