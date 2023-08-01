@@ -1,4 +1,4 @@
-const configuration = {
+module.exports = {
   apps: [{
     name: "imersao-api",
     script: './src/app.js',
@@ -10,5 +10,3 @@ const configuration = {
     }
   }]
 };
-
-export default configuration;
