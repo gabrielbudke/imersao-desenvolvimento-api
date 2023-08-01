@@ -58,8 +58,8 @@ class Postgres extends InterfaceStrategy {
     }
 
     static async connect() {
-        //const connection = new Sequelize(databaseConfig);
-        const connection = new Sequelize("postgres://gabrielsousa:pVSpGR4sQaylHVYZbTLKbtKmNLOdSlN5@dpg-cipe9ad9aq0dcppp1lgg-a.ohio-postgres.render.com/heroes_xmjj?ssl=true");
+        const connection = new Sequelize(databaseConfig);
+        //const connection = new Sequelize("postgres://gabrielsousa:pVSpGR4sQaylHVYZbTLKbtKmNLOdSlN5@dpg-cipe9ad9aq0dcppp1lgg-a.ohio-postgres.render.com/heroes_xmjj?ssl=true");
         return connection;
     }
 
