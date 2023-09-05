@@ -10,7 +10,7 @@
   "scripts": {
     "test:api": "mocha src/test --ignore src/test/auth.test.js",
     "test:auth": "mocha src/test --file src/test/auth.test.js",
-    "test": "mocha src/test --timeout 10000",
+    "test": "nyc --reporter=html mocha src/test --timeout 10000",
     "dev": "node --watch src/app.js",
     "start": "node src/app.js",
     "start:pm2": "pm2-runtime start ecosystem.config.js --env production"
@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "@hapi/code": "^9.0.3",
-    "mocha": "^10.2.0"
+    "mocha": "^10.2.0",
+    "nyc": "^15.1.0"
   }
 }

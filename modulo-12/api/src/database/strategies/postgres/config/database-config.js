@@ -5,6 +5,8 @@ module.exports = {
     port: Number(process.env.USER_POSTGRES_PORT),
     username: process.env.USER_POSTGRES_USERNAME,
     password: process.env.USER_POSTGRES_PASSWORD,
-    ssl: process.env.USER_POSTGRES_SSL,
+    dialectOptions: {
+        ssl: true
+    },
     logging: false
 };

@@ -10,21 +10,19 @@ const HapiAuth = require("hapi-auth-jwt2");
 
 const ContextDatabase = require("./database/ContextDatabase.js");
 const MongoDB = require("./database/strategies/mongodb/MongoDb.js");
-const HeroSchema = require("./database/strategies/mongodb/schemas/Hero.js");
-const HeroRoute = require("./routes/HeroRoutes.js");
-const mapRoutes = require("./utils/routing-mapping.js");
-const AuthRoute = require("./routes/AuthRoute.js");
-
 const Postgres = require("./database/strategies/postgres/Postgres.js");
+
+const HeroSchema = require("./database/strategies/mongodb/schemas/Hero.js");
 const User = require("./database/strategies/postgres/schemas/User.js");
 
-/*const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-*/
+const HeroRoute = require("./routes/HeroRoutes.js");
+const AuthRoute = require("./routes/AuthRoute.js");
+const UtilRoutes = require("./routes/UtilRoutes.js");
+
+const mapRoutes = require("./utils/routing-mapping.js");
 
 const env = process.env.NODE_ENV === "development" ? ".env.dev" : ".env";
 const configPath = path.join(__dirname, `${env}`);
-// console.log("[configPath]", configPath);
 
 config({
     path: configPath
@@ -33,7 +31,6 @@ config({
 const JWT_SECRET = process.env.USER_JWT_KEY;
 
 const server = Hapi.server({
-    //port: 3333,
     port: process.env.USER_SERVER_PORT,
     host: "0.0.0.0"
 });
@@ -49,7 +46,8 @@ const configServer = async () => {
 
     const routes = [
         ...mapRoutes(new HeroRoute(databaseMongo), HeroRoute.methods()),
-        ...mapRoutes(new AuthRoute(databasePostgres, JWT_SECRET), AuthRoute.methods())
+        ...mapRoutes(new AuthRoute(databasePostgres, JWT_SECRET), AuthRoute.methods()),
+        ...mapRoutes(new UtilRoutes(), UtilRoutes.methods())
     ];
 
     const swaggerOptions = {
