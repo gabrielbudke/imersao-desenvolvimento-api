@@ -6,8 +6,10 @@ module.exports = {
     username: process.env.USER_POSTGRES_USERNAME,
     password: process.env.USER_POSTGRES_PASSWORD,
     dialectOptions: {
-        ssl: true
+        ssl: {
+            require: true,
+            rejectUnauthorized: false
+        }
     },
-    ssl: true,
     logging: false
 };
